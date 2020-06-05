@@ -1,0 +1,9 @@
+sudo: required
+services: 
+  - docker
+
+before_install:
+  - docker build -t kostovski989/docker_kubernetes_guide -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true kostovski989/docker_kubernetes_guide npm run test
