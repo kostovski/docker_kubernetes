@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true kostovski989/docker_kubernetes_guide npm run test
+
+deploy: 
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "docker_kubernetes_guide"
+  env: "DockerKubernetesGuide-env"
+  bucket_name: elasticbeanstalk-eu-west-1-760358427803
+  backet_path: "docker_kubernetes_guide"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
